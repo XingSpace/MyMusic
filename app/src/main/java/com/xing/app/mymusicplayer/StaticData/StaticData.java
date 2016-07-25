@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,16 @@ import java.util.List;
 public class StaticData {
 
     private static List<String> list_music;//获取到的音乐列表
+
+    private static List<String> music_name;//获取音乐名称
+
+    public static void setMusic_name(List<String> list){
+        music_name = list;
+    }
+
+    public static List<String> getMusic_name(){
+        return music_name;
+    }
 
     public static void setList_music(List<String> list){
         list_music = list;
@@ -35,6 +44,8 @@ public class StaticData {
 
         List<String> list = new ArrayList<String>();
 
+        List<String> list1 = new ArrayList<String>();
+
         ContentResolver mResolver = context.getContentResolver();
         Cursor cursor = mResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,null,null,null,MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
@@ -45,11 +56,13 @@ public class StaticData {
             do {
                 String s = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
                 list.add(s);
-                Log.d("musicName:", s + i++);
+                s = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
+                list1.add(s);
             }while (cursor.moveToNext());
         }
 
         setList_music(list);
+        setMusic_name(list1);
     }
 
 }

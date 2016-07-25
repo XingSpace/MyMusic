@@ -21,10 +21,22 @@ public class OnChangeMusic {
         }
     }
 
+    public void setNOW_MUSIC_INDEX(int i){
+        NOW_MUSIC_INDEX = i;
+    }
+
+    public int getNOW_MUSIC_INDEX(){
+        return NOW_MUSIC_INDEX;
+    }
+
     public String getMusicOfrandom(){
         Random random = new Random();
         int i = random.nextInt(music.size());
         NOW_MUSIC_INDEX = i;
+        return music.get(i);
+    }
+
+    public String getMusicOfIndex(int i){
         return music.get(i);
     }
 

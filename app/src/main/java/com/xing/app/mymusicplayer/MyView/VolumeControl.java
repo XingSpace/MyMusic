@@ -109,18 +109,14 @@ public class VolumeControl extends LinearLayout{
 
         boolean bottom = temp < roundRect.getY() + roundRect.getHeight() - v.getHeight();
 
-        Log.d("sumNumber",""+sum);
-
         if (top && bottom) {
             int volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             if (temp > v.getY()){
                 v.setY(temp);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume - 1, 0);
-                Log.d("volumeTAG", volume - 1 + "");
             }else if (temp < v.getY()){
                 v.setY(temp);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume + 1, 0);
-                Log.d("volumeTAG Add", volume+1 + "");
             }
 //            if (temp > currentY) {
 //                if (temp != v.getY()) {
